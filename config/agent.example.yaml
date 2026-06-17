@@ -1,0 +1,50 @@
+# AgentOS 配置示例
+# P17 整合阶段使用，声明式定义一个 Agent
+
+agent:
+  name: "my-agent"
+  model: "claude-3-5-sonnet-20241022"
+  system_prompt: |
+    You are a helpful assistant.
+  max_iterations: 20
+  max_tokens: 4096
+
+# LLM Provider 配置
+llm:
+  default: "anthropic"
+  providers:
+    anthropic:
+      api_key: "${ANTHROPIC_API_KEY}"
+      model: "claude-3-5-sonnet-20241022"
+    openai:
+      api_key: "${OPENAI_API_KEY}"
+      model: "gpt-4o"
+
+# MCP Server 注册
+mcp:
+  servers:
+    filesystem:
+      command: "npx"
+      args: ["-y", "@anthropic-ai/mcp-filesystem"]
+    web-search:
+      command: "uvx"
+      args: ["web-search-mcp"]
+
+# 记忆配置
+memory:
+  conversation:
+    max_tokens: 8000
+    compaction_strategy: "summarize"
+  longterm:
+    store: "sqlite"
+    path: "./data/memory.db"
+
+# Steering 规则目录
+steering:
+  dir: "./steering/"
+
+# 可观测性
+observability:
+  log_level: "info"
+  trace_export: "file"
+  trace_dir: "./traces/"

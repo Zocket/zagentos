@@ -1,0 +1,22 @@
+[
+  {
+    "id": "calc-001",
+    "name": "basic arithmetic",
+    "input": "What is 42 * 17?",
+    "expected": {
+      "contains_text": ["714"],
+      "tools_called": ["calculator"],
+      "max_iterations": 3
+    }
+  },
+  {
+    "id": "calc-002",
+    "name": "multi-step calculation",
+    "input": "Calculate (100 + 50) * 2, then divide by 3",
+    "expected": {
+      "contains_text": ["100"],
+      "tools_called": ["calculator"],
+      "max_iterations": 5
+    }
+  }
+]
