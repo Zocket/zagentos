@@ -17,6 +17,7 @@
 coverage.*
 *.coverprofile
 profile.cov
+*config.json
 
 # Go workspace file
 go.work
